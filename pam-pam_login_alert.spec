@@ -12,7 +12,7 @@ Source0:	http://www.kernel.org/pub/linux/libs/pam/pre/modules/%{modulename}-%{ve
 # Source0-md5:	55591c36291247977fd7e1e824191f05
 URL:		http://www.kernel.org/pub/linux/libs/pam/pre/modules/
 BuildRequires:	pam-devel
-Obsoletes:	%{modulename}
+Obsoletes:	pam_login_alert
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -30,16 +30,19 @@ podczas ¶ledzenia aktywno¶ci u¿ytkowników.
 
 %build
 %{__make} \
-	CC="%{__cc}"
+	CC="%{__cc}" \
+	CFLAGS="%{rpmcflags} -fPIC -Wall" \
+	LD="%{__cc}" \
+	LDFLAGS="%{rpmldflags} -shared -lpam"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{etc/security,lib/security} \
+install -d $RPM_BUILD_ROOT{/etc/security,/lib/security} \
 	   $RPM_BUILD_ROOT%{_mandir}/man8
 
 install pam_login_alert.so $RPM_BUILD_ROOT/lib/security
-install login_alert.conf $RPM_BUILD_ROOT%{_sysconfdir}/security/login_alert.conf
-install login_alert.users $RPM_BUILD_ROOT%{_sysconfdir}/security/login_alert.users
+install login_alert.conf $RPM_BUILD_ROOT/etc/security/login_alert.conf
+install login_alert.users $RPM_BUILD_ROOT/etc/security/login_alert.users
 install pam_login_alert.8 $RPM_BUILD_ROOT%{_mandir}/man8
 
 %clean
@@ -50,5 +53,5 @@ rm -rf $RPM_BUILD_ROOT
 %doc README
 %attr(755,root,root) /lib/security/pam_login_alert.so
 %{_mandir}/man8/*
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/security/login_alert.conf
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/security/login_alert.users
+%config(noreplace) %verify(not size mtime md5) /etc/security/login_alert.conf
+%config(noreplace) %verify(not size mtime md5) /etc/security/login_alert.users
