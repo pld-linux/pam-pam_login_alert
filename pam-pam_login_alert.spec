@@ -41,10 +41,10 @@ sed -i 's,/etc/login_alert.conf,/etc/security/login_alert.conf,' *
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/etc/security,/lib/security} \
+install -d $RPM_BUILD_ROOT{/etc/security,/%{_lib}/security} \
 	   $RPM_BUILD_ROOT%{_mandir}/man8
 
-install pam_login_alert.so $RPM_BUILD_ROOT/lib/security
+install pam_login_alert.so $RPM_BUILD_ROOT/%{_lib}/security
 install login_alert.conf $RPM_BUILD_ROOT/etc/security/login_alert.conf
 install login_alert.users $RPM_BUILD_ROOT/etc/security/login_alert.users
 install pam_login_alert.8 $RPM_BUILD_ROOT%{_mandir}/man8
@@ -55,7 +55,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README
-%attr(755,root,root) /lib/security/pam_login_alert.so
+%attr(755,root,root) /%{_lib}/security/pam_login_alert.so
 %{_mandir}/man8/*
 %config(noreplace) %verify(not size mtime md5) /etc/security/login_alert.conf
 %config(noreplace) %verify(not size mtime md5) /etc/security/login_alert.users
