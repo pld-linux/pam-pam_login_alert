@@ -3,7 +3,7 @@ Summary:	A module that informs admin about logins into system
 Summary(pl):	Modu³ informuj±cy administratora o logowaniu do systemu
 Name:		pam-%{modulename}
 Version:	0.10
-Release:	1
+Release:	2
 Epoch:		0
 License:	GPL
 Vendor:		Dustin Puryear <dpuryear@usa.net>
@@ -12,6 +12,7 @@ Source0:	http://www.kernel.org/pub/linux/libs/pam/pre/modules/%{modulename}-%{ve
 # Source0-md5:	55591c36291247977fd7e1e824191f05
 URL:		http://www.kernel.org/pub/linux/libs/pam/pre/modules/
 BuildRequires:	pam-devel
+BuildRequires:	sed >= 4
 Obsoletes:	pam_login_alert
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -27,6 +28,9 @@ podczas ¶ledzenia aktywno¶ci u¿ytkowników.
 
 %prep
 %setup -q -c -n %{modulename}-%{version}
+# corrects paths
+sed -i 's,/etc/login_alert.users,/etc/security/login_alert.users,' *
+sed -i 's,/etc/login_alert.conf,/etc/security/login_alert.conf,' *
 
 %build
 %{__make} \
