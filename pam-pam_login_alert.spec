@@ -3,7 +3,7 @@ Summary:	A module that informs admin about logins into system
 Summary(pl):	Modu³ informuj±cy administratora o logowaniu do systemu
 Name:		pam-%{modulename}
 Version:	0.10
-Release:	2
+Release:	3
 Epoch:		0
 License:	GPL
 Vendor:		Dustin Puryear <dpuryear@usa.net>
