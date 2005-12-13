@@ -57,5 +57,5 @@ rm -rf $RPM_BUILD_ROOT
 %doc README
 %attr(755,root,root) /%{_lib}/security/pam_login_alert.so
 %{_mandir}/man8/*
-%config(noreplace) %verify(not size mtime md5) /etc/security/login_alert.conf
-%config(noreplace) %verify(not size mtime md5) /etc/security/login_alert.users
+%config(noreplace) %verify(not md5 mtime size) /etc/security/login_alert.conf
+%config(noreplace) %verify(not md5 mtime size) /etc/security/login_alert.users
