@@ -1,6 +1,6 @@
 %define 	modulename pam_login_alert
 Summary:	A module that informs admin about logins into system
-Summary(pl):	Modu≥ informuj±cy administratora o logowaniu do systemu
+Summary(pl.UTF-8):   Modu≈Ç informujƒÖcy administratora o logowaniu do systemu
 Name:		pam-%{modulename}
 Version:	0.10
 Release:	3
@@ -21,10 +21,10 @@ Alert an administrator via email and/or syslog when a given user(s)
 accesses the system. Useful primarily when monitoring user activity
 and access.
 
-%description -l pl
-Modu≥ informuj±cy administratora poczt± elektroniczn± lub przez
-sysloga o logowaniu do systemu wybranych uøytkownikÛw. Przydatny
-podczas ∂ledzenia aktywno∂ci uøytkownikÛw.
+%description -l pl.UTF-8
+Modu≈Ç informujƒÖcy administratora pocztƒÖ elektronicznƒÖ lub przez
+sysloga o logowaniu do systemu wybranych u≈ºytkownik√≥w. Przydatny
+podczas ≈õledzenia aktywno≈õci u≈ºytkownik√≥w.
 
 %prep
 %setup -q -c -n %{modulename}-%{version}
