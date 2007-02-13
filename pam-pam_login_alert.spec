@@ -1,6 +1,6 @@
 %define 	modulename pam_login_alert
 Summary:	A module that informs admin about logins into system
-Summary(pl.UTF-8):   Moduł informujący administratora o logowaniu do systemu
+Summary(pl.UTF-8):	Moduł informujący administratora o logowaniu do systemu
 Name:		pam-%{modulename}
 Version:	0.10
 Release:	3
